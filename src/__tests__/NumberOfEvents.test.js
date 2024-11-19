@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 
 describe('<NumberOfEvents /> component', () => {
     beforeEach(() => {
-        render(<NumberOfEvents />)
+        render(<NumberOfEvents setCurrentNOE={() => { }} />)
     })
 
     test('should render event count input', () => {

@@ -25,7 +25,7 @@ describe('<App /> component', () => {
 });
 
 describe('<App /> integration', () => {
-    test('renders a list of events matching the city selected by the user', async () => {
+    test('should render a list of events matching the city selected by the user', async () => {
         const user = userEvent.setup();
         const AppComponent = render(<App />);
         const AppDOM = AppComponent.container.firstChild;
@@ -51,4 +51,20 @@ describe('<App /> integration', () => {
             expect(event.textContent).toContain("Berlin, Germany");
         });
     });
+
+    test('should render same no. of events which is given in no. of events input', async () => {
+        const user = userEvent.setup();
+        const AppComponent = render(<App />);
+        const AppDOM = AppComponent.container.firstChild;
+
+        const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
+        const NumberOfEventsInput = within(NumberOfEventsDOM).queryByLabelText('Number of Events:');
+
+        await user.type(NumberOfEventsInput, '{backspace}{backspace}10');
+
+        const EventListDom = AppDOM.querySelector('#event-list');
+
+
+        expect(within(EventListDom).getAllByRole("listitem")).toHaveLength(10);
+    })
 });

@@ -40,7 +40,7 @@ const removeQuery = () => {
 const getToken = async (code) => {
     const encodeCode = encodeURIComponent(code);
     const response = await fetch(
-        'https://5wvy21pmxb.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode
+        'https://5wvy21pmxb.execute-api.eu-central-1.amazonaws.com/dev/api/token/' + encodeCode,
     );
     const { access_token } = await response.json();
     access_token && localStorage.setItem("access_token", access_token);
