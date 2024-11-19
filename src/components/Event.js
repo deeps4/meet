@@ -8,11 +8,13 @@ const Event = ({ event }) => {
     }
 
     return (
-        <li>
-            <div>{event.summary}</div>
-            <div>{event.created}</div>
-            <div>{event.location}</div>
-            <button onClick={toggleDetails}>
+        <li className="event">
+            <h4>{event.summary}</h4>
+            <p>{new Date(event.created).toString()}</p>
+            <p>
+                @{event.summary} | {event.location}
+            </p>
+            <button className="details-btn" onClick={toggleDetails}>
                 {showDetails ? "hide details" : "show details"}
             </button>
             {showDetails ? <div>{event.description}</div> : null}
