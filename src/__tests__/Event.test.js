@@ -18,11 +18,11 @@ describe('<Event /> component', () => {
     })
 
     test('should render event created date', async () => {
-        expect(screen.queryByText(event.created)).toBeInTheDocument();
+        expect(screen.queryByText(new Date(event.created).toString())).toBeInTheDocument();
     })
 
     test('should render event location', async () => {
-        expect(screen.queryByText(event.location)).toBeInTheDocument();
+        expect(screen.queryByText(`@${event.summary} | ${event.location}`)).toBeInTheDocument();
     })
 
     test('should render "show details" button', async () => {

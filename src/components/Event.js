@@ -17,7 +17,7 @@ const Event = ({ event }) => {
             <button className="details-btn" onClick={toggleDetails}>
                 {showDetails ? "hide details" : "show details"}
             </button>
-            {showDetails ? <div>{event.description}</div> : null}
+            {showDetails ? <div className="details">{event.description}</div> : null}
         </li>
     );
 }
