@@ -29,7 +29,7 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
 
     return (
         <div id="city-search">
-            <label for="city-search-input">Choose you nearest city</label>
+            <label htmlFor="city-search-input">Choose you nearest city</label>
             <input
                 id="city-search-input"
                 type="text"
