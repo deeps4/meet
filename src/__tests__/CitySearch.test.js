@@ -8,7 +8,7 @@ import App from '../App';
 describe('<CitySearch /> component', () => {
     let CitySearchComponent;
     beforeEach(() => {
-        CitySearchComponent = render(<CitySearch allLocations={[]} />);
+        CitySearchComponent = render(<CitySearch allLocations={[]} setInfoAlert={() => { }} />);
     });
 
     test('renders text input', () => {
@@ -35,7 +35,7 @@ describe('<CitySearch /> component', () => {
         const user = userEvent.setup();
         const allEvents = await getEvents();
         const allLocations = extractLocations(allEvents);
-        CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+        CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setInfoAlert={() => { }} />);
 
         // user types "Berlin" in city textbox
         const cityTextBox = CitySearchComponent.queryByRole('textbox');
@@ -53,24 +53,18 @@ describe('<CitySearch /> component', () => {
             expect(suggestionListItems[i].textContent).toBe(suggestions[i]);
         }
     });
-    test('renders the suggestion text in the textbox upon clicking on the suggestion', async () => {
+    test('should call setInfoAlert with info text when no location match the typed value', async () => {
+        const setInfoAlertMock = jest.fn(); // Function
         const user = userEvent.setup();
         const allEvents = await getEvents();
         const allLocations = extractLocations(allEvents);
-        CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setCurrentCity={() => { }} />);
+        CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setCurrentCity={() => { }} setInfoAlert={setInfoAlertMock} />);
 
         const cityTextBox = CitySearchComponent.queryByRole('textbox');
-        await user.type(cityTextBox, "Berlin");
+        await user.type(cityTextBox, "Wrong city");
 
-        // the suggestion's textContent look like this: "Berlin, Germany"
-        const BerlinGermanySuggestion = CitySearchComponent.queryAllByRole('listitem')[0];
-
-        await user.click(BerlinGermanySuggestion);
-
-        expect(cityTextBox).toHaveValue(BerlinGermanySuggestion.textContent);
+        expect(setInfoAlertMock).toHaveBeenCalledWith('We can not find the city you are looking for. Please try another city')
     });
-
-
 
 });
 

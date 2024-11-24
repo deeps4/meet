@@ -4,8 +4,9 @@ import userEvent from "@testing-library/user-event";
 
 
 describe('<NumberOfEvents /> component', () => {
+    let NumberOfEventsComponent
     beforeEach(() => {
-        render(<NumberOfEvents setCurrentNOE={() => { }} />)
+        NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={() => { }} setErrorAlert={() => { }} />)
     })
 
     test('should render event count input', () => {
@@ -23,4 +24,25 @@ describe('<NumberOfEvents /> component', () => {
         expect(screen.queryByLabelText('Number of Events:')).toHaveValue(10);
     })
 
+    test('should call setErrorAlert with error text when 0 is added to the input field', async () => {
+        const setErrorAlertMock = jest.fn();
+        NumberOfEventsComponent.rerender(<NumberOfEvents setCurrentNOE={() => { }} setErrorAlert={setErrorAlertMock} />)
+
+        const user = userEvent.setup();
+
+        await user.type(screen.queryByLabelText('Number of Events:'), '{backspace}{backspace}0');
+
+        expect(setErrorAlertMock).toHaveBeenLastCalledWith('Only positive numbers are allowed')
+    })
+
+    test('should call setErrorAlert with error text when negative number is added to the input field', async () => {
+        const setErrorAlertMock = jest.fn();
+        NumberOfEventsComponent.rerender(<NumberOfEvents setCurrentNOE={() => { }} setErrorAlert={setErrorAlertMock} />)
+
+        const user = userEvent.setup();
+
+        await user.type(screen.queryByLabelText('Number of Events:'), '{backspace}{backspace}-5');
+
+        expect(setErrorAlertMock).toHaveBeenLastCalledWith('Only positive numbers are allowed')
+    })
 })
