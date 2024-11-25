@@ -80,7 +80,7 @@ label {
 
 .event-list-container {
   width: 95%;
-  margin: 0 auto;
+  margin: 60px auto;
 
   @media screen and (min-width: 1280px) {
     width: 60%;
@@ -112,4 +112,13 @@ label {
   left: 20px;
   width: 250px;
   z-index: 1000;
+}
+
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
