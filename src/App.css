@@ -2,18 +2,11 @@
 
 .App {
   text-align: center;
-  width: 90%;
   margin: 70px auto 2%;
-
-  @media screen and (min-width: 420px) and (max-width: 1280px) {
-    width: 80%;
-  }
 
   @media screen and (min-width: 1280px) {
     margin-top: 2%;
-    width: 60%;
   }
-
 }
 
 .App * {
@@ -86,12 +79,17 @@ label {
 }
 
 .event {
+  width: 95%;
   padding: 10px 10px 35px;
-  margin-bottom: 10px;
+  margin: 0 auto 10px;
   text-align: left;
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
+
+  @media screen and (min-width: 1280px) {
+    width: 60%;
+  }
 }
 
 .details-btn {
