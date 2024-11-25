@@ -4,6 +4,7 @@ import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
 import { getEvents, extractLocations } from './api';
 import { ErrorAlert, InfoAlert, WarningAlert } from './components/Alert';
+import CityEventsCharts from './components/CityEventsChart';
 
 
 import './App.css';
@@ -52,6 +53,7 @@ const App = () => {
       </div>
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert} />
       <NumberOfEvents setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert} />
+      <CityEventsCharts allLocations={allLocations} events={events} />
       <EventList events={events} />
     </div>
   );
