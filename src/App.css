@@ -78,18 +78,22 @@ label {
   background-color: #bcdcdb;
 }
 
-.event {
+.event-list-container {
   width: 95%;
-  padding: 10px 10px 35px;
-  margin: 0 auto 10px;
-  text-align: left;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  position: relative;
+  margin: 0 auto;
 
   @media screen and (min-width: 1280px) {
     width: 60%;
   }
+}
+
+.event {
+  padding: 10px 10px 35px;
+  margin-bottom: 10px;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: relative;
 }
 
 .details-btn {
